@@ -16,21 +16,16 @@
 }
 
 - (IBAction)backButton:(id)sender {
-    [_displayString setStringValue:@"aaa"];
+    //[_displayString setStringValue:@"aaa"];
     NSString *filePath = @"/Users/yoshi/Programming/test/test/test/data.csv";
     NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
     static int button1Count = 0;
-#if 0
-    for (NSString *row in lines) {
-        // コンマで区切って配列に格納する
-        NSArray *items = [row componentsSeparatedByString:@","];
-        NSLog(@"%@", items);
-    }
-#endif
     NSArray *items = [lines[button1Count] componentsSeparatedByString:@","];
+    [_displayString setStringValue:items[0]];
     NSLog(@"%@", items[0]);
+    
     if( button1Count < [lines count] - 1){
         button1Count++;
     }else{
