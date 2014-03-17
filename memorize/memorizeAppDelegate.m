@@ -17,7 +17,7 @@
 
 - (IBAction)backButton:(id)sender {
     //[_displayString setStringValue:@"aaa"];
-    NSString *filePath = @"/Users/yoshi/Programming/test/test/test/data.csv";
+    NSString *filePath = @"/Users/yoshi/Programming/memorize/memorize/data.csv";
     NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);

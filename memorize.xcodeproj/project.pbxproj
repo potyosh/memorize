@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		923D5AB418D6AB6300C87B86 /* data.csv in Resources */ = {isa = PBXBuildFile; fileRef = 923D5AB318D6AB6300C87B86 /* data.csv */; };
 		92497E5D18D58F28009889B0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92497E5C18D58F28009889B0 /* Cocoa.framework */; };
 		92497E6718D58F28009889B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92497E6518D58F28009889B0 /* InfoPlist.strings */; };
 		92497E6918D58F28009889B0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92497E6818D58F28009889B0 /* main.m */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		923D5AB318D6AB6300C87B86 /* data.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.csv; sourceTree = "<group>"; };
 		92497E5918D58F28009889B0 /* memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92497E5C18D58F28009889B0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		92497E5F18D58F28009889B0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -115,6 +117,7 @@
 		92497E6218D58F28009889B0 /* memorize */ = {
 			isa = PBXGroup;
 			children = (
+				923D5AB318D6AB6300C87B86 /* data.csv */,
 				92497E6E18D58F28009889B0 /* memorizeAppDelegate.h */,
 				92497E6F18D58F28009889B0 /* memorizeAppDelegate.m */,
 				92497E7118D58F28009889B0 /* MainMenu.xib */,
@@ -233,6 +236,7 @@
 			files = (
 				92497E6718D58F28009889B0 /* InfoPlist.strings in Resources */,
 				92497E7518D58F28009889B0 /* Images.xcassets in Resources */,
+				923D5AB418D6AB6300C87B86 /* data.csv in Resources */,
 				92497E6D18D58F28009889B0 /* Credits.rtf in Resources */,
 				92497E7318D58F28009889B0 /* MainMenu.xib in Resources */,
 			);
@@ -467,6 +471,7 @@
 				92497E8C18D58F29009889B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92497E8D18D58F29009889B0 /* Build configuration list for PBXNativeTarget "memorizeTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +480,7 @@
 				92497E8F18D58F29009889B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
