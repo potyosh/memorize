@@ -11,6 +11,7 @@
 @implementation memorizeAppDelegate
 
 int button1Count = 0;
+NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.csv";
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -18,7 +19,6 @@ int button1Count = 0;
 }
 
 - (IBAction)backButton:(id)sender {
-    NSString *filePath = @"/Users/yoshi/Programming/memorize/memorize/data.csv";
     NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
@@ -38,7 +38,6 @@ int button1Count = 0;
 }
 
 - (IBAction)nextButton:(id)sender {
-    NSString *filePath = @"/Users/yoshi/Programming/memorize/memorize/data.csv";
     NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
