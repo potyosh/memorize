@@ -10,32 +10,46 @@
 
 @implementation memorizeAppDelegate
 
+int button1Count = 0;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
 }
 
 - (IBAction)backButton:(id)sender {
-    //[_displayString setStringValue:@"aaa"];
     NSString *filePath = @"/Users/yoshi/Programming/memorize/memorize/data.csv";
     NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
-    static int button1Count = 0;
+    if( button1Count > 0 ){
+        button1Count--;
+    }else{
+        button1Count = (int)([lines count] - 1);
+    }
     NSArray *items = [lines[button1Count] componentsSeparatedByString:@","];
     [_displayString setStringValue:items[0]];
     NSLog(@"%@", items[0]);
     
-    if( button1Count < [lines count] - 1){
-        button1Count++;
-    }else{
-        button1Count = 0;
-    }
+
 }
 
 - (IBAction)changeButton:(id)sender {
 }
 
 - (IBAction)nextButton:(id)sender {
+    NSString *filePath = @"/Users/yoshi/Programming/memorize/memorize/data.csv";
+    NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
+    NSLog(@"lines count: %ld", lines.count);
+    if( button1Count < [lines count] - 1){
+        button1Count++;
+    }else{
+        button1Count = 0;
+    }
+    NSArray *items = [lines[button1Count] componentsSeparatedByString:@","];
+    [_displayString setStringValue:items[0]];
+    NSLog(@"%@", items[0]);
+    
 }
 @end
