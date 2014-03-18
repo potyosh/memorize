@@ -13,42 +13,54 @@
 int button1Count = 0;
 NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.csv";
 
+enum EnDisplayState {
+    EnDisplayStateQuestion,     //items[0]
+    EnDisplayStateAnswer,       //items[1]
+};
+
+enum EnDisplayState enDisplayState = EnDisplayStateQuestion;
+NSString *csvdata;
+NSArray *lines;
+NSArray *items;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    lines = [csvdata componentsSeparatedByString:@"\n"];
 }
 
 - (IBAction)backButton:(id)sender {
-    NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
     if( button1Count > 0 ){
         button1Count--;
     }else{
         button1Count = (int)([lines count] - 1);
     }
-    NSArray *items = [lines[button1Count] componentsSeparatedByString:@","];
+    items = [lines[button1Count] componentsSeparatedByString:@","];
     [_displayString setStringValue:items[0]];
     NSLog(@"%@", items[0]);
-    
-
 }
 
 - (IBAction)changeButton:(id)sender {
+    //Flip display
+    if( enDisplayState == EnDisplayStateQuestion ){
+        enDisplayState = EnDisplayStateAnswer;
+    }else{
+        enDisplayState = EnDisplayStateQuestion;
+    }
+    [_displayString setStringValue:items[enDisplayState]];
 }
 
 - (IBAction)nextButton:(id)sender {
-    NSString *csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *lines = [csvdata componentsSeparatedByString:@"\n"];
     NSLog(@"lines count: %ld", lines.count);
     if( button1Count < [lines count] - 1){
         button1Count++;
     }else{
         button1Count = 0;
     }
-    NSArray *items = [lines[button1Count] componentsSeparatedByString:@","];
+    items = [lines[button1Count] componentsSeparatedByString:@","];
     [_displayString setStringValue:items[0]];
     NSLog(@"%@", items[0]);
-    
 }
 @end
