@@ -53,14 +53,32 @@ NSArray *items;
 }
 
 - (IBAction)nextButton:(id)sender {
-    NSLog(@"lines count: %ld", lines.count);
-    if( button1Count < [lines count] - 1){
-        button1Count++;
-    }else{
-        button1Count = 0;
+    // JSON 文字列
+    NSString *jsonString = @"[{\"title\":\"RDocを記述する\", \"content\":\"RDocを記述する\"}, {\"title\":\"組み込んで使えるようにする\", \"content\":\"組み込んで使えるようにする\"}]";
+    
+    // JSON 文字列をそのまま NSJSONSerialization に渡せないので、
+    // NSData に変換する
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUnicodeStringEncoding];
+    
+    // JSON を NSArray に変換する
+    NSError *error;
+    NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                     options:NSJSONReadingAllowFragments
+                                                       error:&error];
+    
+    // JSON のオブジェクトは NSDictionary に変換されている
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    for (NSDictionary *obj in array)
+    {
+#if 0
+        Entry *entry = [[Entry alloc] init];
+        entry.title = [obj objectForKey:@"title"];
+        entry.content = [obj objectForKey:@"content"];
+        [results addObject:entry];
+#else
+        NSLog([obj objectForKey:@"title"]);
+        NSLog([obj objectForKey:@"content"]);
+#endif
     }
-    items = [lines[button1Count] componentsSeparatedByString:@","];
-    [_displayString setStringValue:items[0]];
-    NSLog(@"%@", items[0]);
 }
 @end
