@@ -10,65 +10,67 @@
 
 @implementation memorizeAppDelegate
 
-int button1Count = 0;
+int buttonCount = 0;
 NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.json";
 
-enum EnDisplayState {
-    EnDisplayStateQuestion,     //items[0]
-    EnDisplayStateAnswer,       //items[1]
-};
+typedef enum {
+    DISP_STATE_TYPE_ENGLISH = 0,
+    DISP_STATE_TYPE_JAPANESE = 1,
+} dispStateTypes;
 
-enum EnDisplayState enDisplayState = EnDisplayStateQuestion;
+dispStateTypes dispStateType = DISP_STATE_TYPE_ENGLISH;
 NSString *jsondata;
-NSArray *lines;
-NSArray *items;
+NSData *jsonData;
+NSArray *array;
+NSDictionary *obj;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSError *error;
     // Insert code here to initialize your application
     jsondata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    lines = [jsondata componentsSeparatedByString:@"\n"];
+    jsonData = [jsondata dataUsingEncoding:NSUnicodeStringEncoding];
+    
+    // convert JSON to array
+    array = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                     options:NSJSONReadingAllowFragments
+                                                       error:&error];
 }
 
 - (IBAction)backButton:(id)sender {
-    NSLog(@"lines count: %ld", lines.count);
-    if( button1Count > 0 ){
-        button1Count--;
+    if( buttonCount > 0 ){
+        buttonCount--;
     }else{
-        button1Count = (int)([lines count] - 1);
+        buttonCount = (int)[array count] - 1;
     }
-    items = [lines[button1Count] componentsSeparatedByString:@","];
-    [_displayString setStringValue:items[0]];
-    NSLog(@"%@", items[0]);
+    obj = array[buttonCount];
+    //Display
+    [_displayString setStringValue:[obj objectForKey:@"english"]   ];
 }
 
 - (IBAction)changeButton:(id)sender {
     //Flip display
-    if( enDisplayState == EnDisplayStateQuestion ){
-        enDisplayState = EnDisplayStateAnswer;
+    if( dispStateType == DISP_STATE_TYPE_ENGLISH ){
+        dispStateType = DISP_STATE_TYPE_JAPANESE;
     }else{
-        enDisplayState = EnDisplayStateQuestion;
+        dispStateType = DISP_STATE_TYPE_ENGLISH;
     }
-    [_displayString setStringValue:items[enDisplayState]];
+    //Display
+    if( dispStateType == DISP_STATE_TYPE_ENGLISH ){
+        [_displayString setStringValue:[obj objectForKey:@"english"]   ];
+    }else{
+        [_displayString setStringValue:[obj objectForKey:@"japanese"]   ];
+    }
 }
 
 - (IBAction)nextButton:(id)sender {
-    NSData *jsonData = [jsondata dataUsingEncoding:NSUnicodeStringEncoding];
-    
-    // convert JSON to array
-    NSError *error;
-    NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                     options:NSJSONReadingAllowFragments
-                                                       error:&error];
-    
-    if( button1Count < [array count] - 1){
-        button1Count++;
+    if( buttonCount < [array count] - 1){
+        buttonCount++;
     }else{
-        button1Count = 0;
+        buttonCount = 0;
     }
-    NSDictionary *obj = array[button1Count];
-    NSLog([obj objectForKey:@"english"]);
-    NSLog([obj objectForKey:@"japanese"]);
-    
+    obj = array[buttonCount];
+    //Display
+    [_displayString setStringValue:[obj objectForKey:@"english"]   ];
 }
 @end
