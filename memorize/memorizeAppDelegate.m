@@ -11,7 +11,7 @@
 @implementation memorizeAppDelegate
 
 int button1Count = 0;
-NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.csv";
+NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.json";
 
 enum EnDisplayState {
     EnDisplayStateQuestion,     //items[0]
@@ -19,15 +19,15 @@ enum EnDisplayState {
 };
 
 enum EnDisplayState enDisplayState = EnDisplayStateQuestion;
-NSString *csvdata;
+NSString *jsondata;
 NSArray *lines;
 NSArray *items;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    csvdata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    lines = [csvdata componentsSeparatedByString:@"\n"];
+    jsondata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    lines = [jsondata componentsSeparatedByString:@"\n"];
 }
 
 - (IBAction)backButton:(id)sender {
@@ -53,32 +53,22 @@ NSArray *items;
 }
 
 - (IBAction)nextButton:(id)sender {
-    // JSON 文字列
-    NSString *jsonString = @"[{\"title\":\"RDocを記述する\", \"content\":\"RDocを記述する\"}, {\"title\":\"組み込んで使えるようにする\", \"content\":\"組み込んで使えるようにする\"}]";
+    NSData *jsonData = [jsondata dataUsingEncoding:NSUnicodeStringEncoding];
     
-    // JSON 文字列をそのまま NSJSONSerialization に渡せないので、
-    // NSData に変換する
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUnicodeStringEncoding];
-    
-    // JSON を NSArray に変換する
+    // convert JSON to array
     NSError *error;
     NSArray *array = [NSJSONSerialization JSONObjectWithData:jsonData
                                                      options:NSJSONReadingAllowFragments
                                                        error:&error];
     
-    // JSON のオブジェクトは NSDictionary に変換されている
-    NSMutableArray *results = [[NSMutableArray alloc] init];
-    for (NSDictionary *obj in array)
-    {
-#if 0
-        Entry *entry = [[Entry alloc] init];
-        entry.title = [obj objectForKey:@"title"];
-        entry.content = [obj objectForKey:@"content"];
-        [results addObject:entry];
-#else
-        NSLog([obj objectForKey:@"title"]);
-        NSLog([obj objectForKey:@"content"]);
-#endif
+    if( button1Count < [array count] - 1){
+        button1Count++;
+    }else{
+        button1Count = 0;
     }
+    NSDictionary *obj = array[button1Count];
+    NSLog([obj objectForKey:@"english"]);
+    NSLog([obj objectForKey:@"japanese"]);
+    
 }
 @end
