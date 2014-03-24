@@ -73,4 +73,8 @@ NSDictionary *obj;
     //Display
     [_displayString setStringValue:[obj objectForKey:@"english"]   ];
 }
+
+- (IBAction)mainMenuPreferences:(id)sender {
+    NSLog(@"hohogege");
+}
 @end

@@ -15,5 +15,6 @@
 - (IBAction)backButton:(id)sender;
 - (IBAction)changeButton:(id)sender;
 - (IBAction)nextButton:(id)sender;
+- (IBAction)mainMenuPreferences:(id)sender;
 
 @end
