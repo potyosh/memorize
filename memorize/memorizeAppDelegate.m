@@ -12,6 +12,7 @@
 
 int buttonCount = 0;
 NSString *filePath = @"/Users/yoshi/Dropbox/English/english_words.json";
+NSWindowController *controllerWindow;
 
 typedef enum {
     DISP_STATE_TYPE_ENGLISH = 0,
@@ -75,6 +76,7 @@ NSDictionary *obj;
 }
 
 - (IBAction)mainMenuPreferences:(id)sender {
-    NSLog(@"hohogege");
+    controllerWindow = [[NSWindowController alloc] initWithWindowNibName:@"Preferences"];
+    [controllerWindow showWindow:self];
 }
 @end
