@@ -20,6 +20,7 @@
 		92497E8518D58F28009889B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92497E8318D58F28009889B0 /* InfoPlist.strings */; };
 		92497E8718D58F29009889B0 /* memorizeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92497E8618D58F29009889B0 /* memorizeTests.m */; };
 		92791D5C18ED6787006ED261 /* preferencesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92791D5B18ED6787006ED261 /* preferencesAppDelegate.m */; };
+		92AF0F6C19161DAB0005FD02 /* memorizeDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AF0F6B19161DAB0005FD02 /* memorizeDataObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		92497E8618D58F29009889B0 /* memorizeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = memorizeTests.m; sourceTree = "<group>"; };
 		92791D5A18ED6787006ED261 /* preferencesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preferencesAppDelegate.h; sourceTree = "<group>"; };
 		92791D5B18ED6787006ED261 /* preferencesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preferencesAppDelegate.m; sourceTree = "<group>"; };
+		92AF0F6A19161DAB0005FD02 /* memorizeDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorizeDataObject.h; sourceTree = "<group>"; };
+		92AF0F6B19161DAB0005FD02 /* memorizeDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = memorizeDataObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				92497E6318D58F28009889B0 /* Supporting Files */,
 				92791D5A18ED6787006ED261 /* preferencesAppDelegate.h */,
 				92791D5B18ED6787006ED261 /* preferencesAppDelegate.m */,
+				92AF0F6A19161DAB0005FD02 /* memorizeDataObject.h */,
+				92AF0F6B19161DAB0005FD02 /* memorizeDataObject.m */,
 			);
 			path = memorize;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92AF0F6C19161DAB0005FD02 /* memorizeDataObject.m in Sources */,
 				92497E7018D58F28009889B0 /* memorizeAppDelegate.m in Sources */,
 				92497E6918D58F28009889B0 /* main.m in Sources */,
 				92791D5C18ED6787006ED261 /* preferencesAppDelegate.m in Sources */,
