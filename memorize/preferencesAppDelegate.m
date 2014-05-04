@@ -7,6 +7,7 @@
 //
 
 #import "preferencesAppDelegate.h"
+#import "memorizeDataObject.h"
 
 @implementation preferencesAppDelegate
 
@@ -23,6 +24,7 @@
         for( NSURL* URL in [openDlg URLs] )
         {
             NSLog( @"%@", [URL path] );
+            NSLog( @"%@", [memorizeDataObject sharedManager].jsonFileURL );
         }
     }
 }

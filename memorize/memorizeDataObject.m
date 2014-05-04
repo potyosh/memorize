@@ -10,6 +10,7 @@
 
 @implementation memorizeDataObject
 static memorizeDataObject *sharedData_ = nil;
+@synthesize jsonFileURL;
 
 //This object is generated with singleton pattern
 + (memorizeDataObject *)sharedManager{

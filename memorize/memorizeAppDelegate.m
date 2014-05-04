@@ -7,6 +7,7 @@
 //
 
 #import "memorizeAppDelegate.h"
+#import "memorizeDataObject.h"
 
 @implementation memorizeAppDelegate
 
@@ -32,6 +33,8 @@ NSDictionary *obj;
     jsondata = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     jsonData = [jsondata dataUsingEncoding:NSUnicodeStringEncoding];
     
+    // Get Data Object
+    [memorizeDataObject sharedManager].jsonFileURL = @"/Users/yoshi/Dropbox/English/english_words.json";
     // convert JSON to array
     array = [NSJSONSerialization JSONObjectWithData:jsonData
                                                      options:NSJSONReadingAllowFragments

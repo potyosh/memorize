@@ -10,4 +10,5 @@
 
 @interface memorizeDataObject : NSObject
 + (memorizeDataObject  *)sharedManager;
+@property (readwrite) NSString* jsonFileURL;
 @end
